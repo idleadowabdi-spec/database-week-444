@@ -1,0 +1,79 @@
+WEEK 4 DATABASE ASSIGNMENT
+Advanced SQL Queries and Aggregations
+Question 1: Total Payment Amount for Each Payment Date
+
+SQL Query:
+
+SELECT
+    paymentDate,
+    SUM(amount) AS total_amount
+FROM payments
+GROUP BY paymentDate
+ORDER BY paymentDate DESC
+LIMIT 5;
+
+
+Explanation:
+
+SUM(amount) calculates the total payments received on each date.
+GROUP BY paymentDate groups payments by their payment date.
+ORDER BY paymentDate DESC sorts the dates from latest to earliest.
+LIMIT 5 displays only the five latest payment dates.
+Question 2: Average Credit Limit of Each Customer
+
+SQL Query:
+
+SELECT
+    customerName,
+    country,
+    AVG(creditLimit) AS average_credit_limit
+FROM customers
+GROUP BY customerName, country;
+
+
+Explanation:
+
+AVG(creditLimit) calculates the average credit limit for each group.
+GROUP BY customerName, country groups the results by customer name and country.
+The query displays the customer name, country, and average credit limit.
+
+Note: Since each customer normally has one credit-limit record, the average will generally equal that customer's credit limit.
+
+Question 3: Total Price of Products Ordered
+
+SQL Query:
+
+SELECT
+    productCode,
+    quantityOrdered,
+    SUM(quantityOrdered * priceEach) AS total_price
+FROM orderdetails
+GROUP BY productCode, quantityOrdered;
+
+
+Explanation:
+
+productCode identifies the product ordered.
+quantityOrdered displays the quantity ordered.
+quantityOrdered * priceEach calculates the price for each order-detail record.
+SUM() adds the calculated prices within each product and quantity group.
+GROUP BY productCode, quantityOrdered groups records by product code and quantity ordered.
+Question 4: Highest Payment Amount for Each Check Number
+
+SQL Query:
+
+SELECT
+    checkNumber,
+    MAX(amount) AS highest_payment
+FROM payments
+GROUP BY checkNumber;
+
+
+Explanation:
+
+MAX(amount) returns the highest payment amount within each check-number group.
+GROUP BY checkNumber groups payment records by their check number.
+The query displays each check number and its highest payment amount.
+Conclusion
+
+This assignment demonstrates the use of SQL aggregate functions and clauses to summarize and organize database records. The SUM(), AVG(), and MAX() functions calculate totals, averages, and maximum values, while GROUP BY, ORDER BY, and LIMIT help organize and restrict query results. These techniques are useful for analyzing payment records, customer credit limits, and product sales.
